@@ -1,28 +1,18 @@
 document.addEventListener('scroll', function() {
     const scrollPosition = window.scrollY;
     
-    const maxScroll = window.innerHeight * 1.5; 
-    
-    let opacity = 1 - (scrollPosition / maxScroll);
-    
-    if (opacity < 0) {
-        opacity = 0;
-    }
-    if (opacity > 1) {
-        opacity = 1;
-    }
-    
     const towerImage = document.getElementById('tower-image');
+    const footer = document.getElementById('links-footer');
+    
     if (towerImage) {
-        towerImage.style.opacity = opacity;
+        towerImage.style.transform = `translateY(${-scrollPosition * 0.5}px)`;
     }
 
-    const footer = document.getElementById('links-footer');
     if (footer) {
-        const startPoint = maxScroll * 0.7;
-        const endPoint = maxScroll;
-        
-        let footerProgress = (scrollPosition - startPoint) / (endPoint - startPoint);
+        const appearanceStart = window.innerHeight * 0.5; 
+        const maxVisibilityScroll = window.innerHeight * 1.5;
+
+        let footerProgress = (scrollPosition - appearanceStart) / (maxVisibilityScroll - appearanceStart);
         
         if (footerProgress < 0) {
             footerProgress = 0;
