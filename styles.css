@@ -53,7 +53,6 @@
     margin: 0 15px;
     text-decoration: none;
     opacity: 0.8;
-    transition: opacity 0.3s;
 }
 
 #links-footer a:hover {
@@ -64,4 +63,5 @@
     font-size: 0.7em;
     margin-top: 10px;
 }
+
 
