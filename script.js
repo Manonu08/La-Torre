@@ -5,12 +5,11 @@ document.addEventListener('scroll', function() {
     const footer = document.getElementById('links-footer');
     
     if (towerImage) {
-        // Aumentamos la velocidad de movimiento a * 1 (misma velocidad que el scroll)
-        towerImage.style.transform = `translateY(${-scrollPosition * 1}px)`; 
+        towerImage.style.transform = `translateY(${-scrollPosition * 0.4}px)`; 
     }
 
     if (footer) {
-        const appearanceStart = window.innerHeight * 0.5; 
+        const appearanceStart = window.innerHeight * 0.8; 
         const maxVisibilityScroll = window.innerHeight * 1.5;
 
         let footerProgress = (scrollPosition - appearanceStart) / (maxVisibilityScroll - appearanceStart);
