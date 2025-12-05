@@ -21,6 +21,8 @@
     height: 100vh;
     overflow: hidden;
     z-index: 10;
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 
 #tower-image {
@@ -36,19 +38,17 @@
     position: relative;
     z-index: 20;
     height: 200vh;
-
 }
-
 
 #links-footer {
     position: absolute; 
-    bottom: 0;
+    bottom: 0; 
     left: 0;
     width: 100%;
     text-align: center;
     padding-bottom: 5vh; 
     color: rgba(255, 255, 255, 0.5);
-    opacity: 1;
+    opacity: 1; 
 }
 
 #links-footer a {
