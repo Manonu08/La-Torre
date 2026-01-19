@@ -1,3 +1,5 @@
+HTML
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,59 +9,123 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .reveal {
-            opacity: 0;
-            transform: translateY(80px);
-            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
-        .reveal.active {
+
+        .container {
+            position: relative;
+            width: 100%;
+            background: black;
+        }
+
+        .xvi-overlay {
+            position: absolute;
+            top: 3%;
+            width: 100%;
+            z-index: 999;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .xvi-text {
+            color: rgba(255,255,255,0.75);
+            font-family: 'Times New Roman', serif;
+            font-size: 22px;
+            letter-spacing: 10px;
+            text-shadow: 0 0 12px rgba(0,0,0,1);
+            padding-left: 10px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #links-footer {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            text-align: center;
+            padding: 80px 0;
+            background: black;
+            width: 100%;
+        }
+
+        #links-footer.active {
             opacity: 1;
             transform: translateY(0);
         }
+
+        .footer-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .social-icons {
+            font-size: 3rem;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+        }
+
+        .copyright {
+            opacity: 0.3;
+            color: white;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
-<body style="background-color: black; margin: 0; padding: 0; overflow-y: auto !important;">
+<body>
 
-    <div style="width: 100%; position: relative; background: black; display: flex; flex-direction: column; align-items: center;">
-        <div style="position: absolute; top: 3%; width: 100%; z-index: 999; text-align: center; pointer-events: none;">
-            <span style="color: rgba(255,255,255,0.75); font-family: 'Times New Roman', serif; font-size: 22px !important; letter-spacing: 10px; font-weight: normal; text-shadow: 0 0 12px rgba(0,0,0,1); padding-left: 10px;">
-                XVI
-            </span>
+    <div class="container">
+        <div class="xvi-overlay">
+            <span class="xvi-text">XVI</span>
         </div>
-        <div style="line-height: 0; width: 100%;">
-            <img src="Torre.jpg" alt="La Torre" style="width: 100%; height: auto; display: block;">
+        <img src="Torre.jpg" alt="La Torre" class="main-img">
+    </div>
+
+    <footer id="links-footer">
+        <div class="footer-content">
+            <p style="color: white; font-size: 1.2rem; line-height: 1.6; font-style: italic; opacity: 0.9;">
+                "La Torre. Un disco de emociones, un cementerio de ellas. Ambient Experimental, Indie Rock y Folk. Argentina."
+            </p>
+            
+            <div class="social-icons">
+                <a href="https://open.spotify.com" target="_blank"><i class="fab fa-spotify"></i></a>
+                <a href="https://music.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://music.apple.com" target="_blank"><i class="fab fa-apple"></i></a>
+            </div>
+            
+            <p class="copyright">© 2026 MANUEL BAINOTTI</p>
         </div>
-    </div>
-    
-    <div style="background-color: black; width: 100%; padding-top: 15vh; padding-bottom: 150px;">
-        <footer id="links-footer" class="reveal" style="text-align: center;">
-            <div style="margin-bottom: 50px; padding: 0 30px;">
-                <p style="color: #ffffff; font-size: 1.1rem; line-height: 1.6; font-style: italic; max-width: 600px; margin: 0 auto; opacity: 0.85;">
-                    "La Torre. Un disco de emociones, un cementerio de ellas. Ambient Experimental, Indie Rock y Folk. Argentina."
-                </p>
-            </div>
-            <div style="font-size: 3rem; margin-bottom: 40px;">
-                <a href="https://open.spotify.com" target="_blank" style="color: white; margin: 0 20px; text-decoration: none;"><i class="fab fa-spotify"></i></a>
-                <a href="https://music.youtube.com" target="_blank" style="color: white; margin: 0 20px; text-decoration: none;"><i class="fab fa-youtube"></i></a>
-                <a href="https://music.apple.com" target="_blank" style="color: white; margin: 0 20px; text-decoration: none;"><i class="fab fa-apple"></i></a>
-            </div>
-            <p style="opacity: 0.3; font-size: 0.7rem; letter-spacing: 2px;">© 2026 MANUEL BAINOTTI</p>
-        </footer>
-    </div>
+    </footer>
 
     <script>
-        function revealOnScroll() {
-            var revealElement = document.querySelector('.reveal');
-            var windowHeight = window.innerHeight;
-            var elementTop = revealElement.getBoundingClientRect().top;
-            
-            if (elementTop < windowHeight - 50) {
-                revealElement.classList.add('active');
+        function checkScroll() {
+            const footer = document.getElementById('links-footer');
+            const scrollPosition = window.scrollY;
+
+            if (scrollPosition > 150) {
+                footer.classList.add('active');
             } else {
-                revealElement.classList.remove('active');
+                footer.classList.remove('active');
             }
         }
-        window.addEventListener('scroll', revealOnScroll);
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
     </script>
 </body>
 </html>
