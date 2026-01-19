@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 1s ease-out;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
-        
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
@@ -33,7 +31,7 @@
         </div>
     </div>
     
-    <div style="background-color: black; width: 100%; padding: 80px 0;">
+    <div style="background-color: black; width: 100%; padding: 60px 0 100px 0;">
         <footer id="links-footer" class="reveal" style="text-align: center;">
             
             <div style="margin-bottom: 50px; padding: 0 30px;">
@@ -42,26 +40,34 @@
                 </p>
             </div>
 
-            <div style="font-size: 2.8rem; margin-bottom: 40px;">
-                <a href="https://open.spotify.com/intl-es/album/35v0W5yV8uR8YpWn0w0X8V" target="_blank" style="color: white; margin: 0 20px; text-decoration: none;"><i class="fab fa-spotify"></i></a>
+            <div style="font-size: 3rem; margin-bottom: 40px;">
+                <a href="https://open.spotify.com" target="_blank" style="color: white; margin: 0 20px; text-decoration: none;"><i class="fab fa-spotify"></i></a>
                 <a href="https://music.youtube.com/playlist?list=OLAK5uy_mE-_rcPuh-QSZMqQn2CnVtYEI6ALA390Y" target="_blank" style="color: white; margin: 0 20px; text-decoration: none;"><i class="fab fa-youtube"></i></a>
                 <a href="https://music.apple.com/es/album/la-torre/1865266466" target="_blank" style="color: white; margin: 0 20px; text-decoration: none;"><i class="fab fa-apple"></i></a>
             </div>
             
-            <p style="opacity: 0.3; font-size: 0.7rem; letter-spacing: 2px;">© 2026 MANUEL BAINOTTI</p>
+            <p style="opacity: 0.3; font-size: 0.7rem; letter-spacing: 2px;">© 2026 Manuel Bainotti</p>
         </footer>
     </div>
 
     <script>
-        window.addEventListener('scroll', function() {
+        function revealOnScroll() {
             var revealElement = document.querySelector('.reveal');
-            var position = revealElement.getBoundingClientRect().top;
             var windowHeight = window.innerHeight;
-
-            if (position < windowHeight - 100) {
+            var elementTop = revealElement.getBoundingClientRect().top;
+            
+            if (elementTop < windowHeight - 50) {
                 revealElement.classList.add('active');
+            } else {
+                revealElement.classList.remove('active');
             }
-        });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
     </script>
 </body>
 </html>
+</body>
+</html>
+
