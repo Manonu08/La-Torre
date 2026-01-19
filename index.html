@@ -7,34 +7,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
+        body, html {
             background-color: black;
             margin: 0;
             padding: 0;
+            width: 100%;
+            overflow-x: hidden;
         }
 
-        .image-container {
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .image-wrapper {
             position: relative;
             width: 100%;
             line-height: 0;
         }
 
-        .xvi-overlay {
+        .xvi-text {
             position: absolute;
             top: 3%;
+            left: 0;
             width: 100%;
-            z-index: 10;
-            text-align: center;
-            pointer-events: none;
-        }
-
-        .xvi-text {
-            color: rgba(255,255,255,0.75);
+            color: rgba(255,255,255,0.7);
             font-family: 'Times New Roman', serif;
             font-size: 22px;
             letter-spacing: 10px;
-            text-shadow: 0 0 12px rgba(0,0,0,1);
+            text-align: center;
+            z-index: 99;
+            text-shadow: 0 0 10px rgba(0,0,0,1);
             padding-left: 10px;
+            pointer-events: none;
         }
 
         .main-img {
@@ -44,23 +50,17 @@
         }
 
         #links-footer {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            background-color: black;
             text-align: center;
             padding: 100px 0;
-            background: black;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
         #links-footer.active {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        .footer-content {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .social-icons {
@@ -73,55 +73,46 @@
             margin: 0 20px;
             text-decoration: none;
         }
-
-        .copyright {
-            opacity: 0.3;
-            color: white;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-        }
     </style>
 </head>
 <body>
 
-    <div class="image-container">
-        <div class="xvi-overlay">
-            <span class="xvi-text">XVI</span>
+    <div class="container">
+        <div class="image-wrapper">
+            <div class="xvi-text">XVI</div>
+            <img src="Torre.jpg" alt="La Torre" class="main-img">
         </div>
-        <img src="Torre.jpg" alt="La Torre" class="main-img">
+
+        <footer id="links-footer">
+            <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
+                <p style="color: white; font-size: 1.1rem; font-style: italic; line-height: 1.6; opacity: 0.9;">
+                    "La Torre". Un disco de emociones, un cementerio de ellas. Ambient Experimental, Indie Rock y Folk. Argentina.
+                </p>
+                
+                <div class="social-icons">
+                    <a href="https://open.spotify.com/artist/3P60EofvWkE17T6C6n9U8y" target="_blank"><i class="fab fa-spotify"></i></a>
+                    <a href="https://music.youtube.com/playlist?list=OLAK5uy_mE-_rcPuh-QSZMqQn2CnVtYEI6ALA390Y" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://music.apple.com/es/album/la-torre/1865266466" target="_blank"><i class="fab fa-apple"></i></a>
+                </div>
+                
+                <p style="opacity: 0.3; color: white; font-size: 0.7rem; letter-spacing: 2px;">© 2026 Manuel Bainotti</p>
+            </div>
+        </footer>
     </div>
 
-    <footer id="links-footer">
-        <div class="footer-content">
-            <p style="color: white; font-size: 1.2rem; line-height: 1.6; font-style: italic; opacity: 0.9;">
-                "La TORRE". Un disco de emociones, un cementerio de ellas. Ambient Experimental, Indie Rock y Folk. Argentina.
-            </p>
-            
-            <div class="social-icons">
-                <a href="https://open.spotify.com" target="_blank"><i class="fab fa-spotify"></i></a>
-                <a href="https://music.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://music.apple.com" target="_blank"><i class="fab fa-apple"></i></a>
-            </div>
-            
-            <p class="copyright">© 2026 Manuel Bainotti</p>
-        </div>
-    </footer>
-
     <script>
-        function checkScroll() {
-            const footer = document.getElementById('links-footer');
-            const triggerBottom = window.innerHeight * 0.8;
-            const footerTop = footer.getBoundingClientRect().top;
+        const footer = document.getElementById('links-footer');
+        
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + window.innerHeight;
+            const footerTop = footer.offsetTop + 50;
 
-            if (footerTop < triggerBottom) {
+            if (scrollPos > footerTop) {
                 footer.classList.add('active');
             } else {
                 footer.classList.remove('active');
             }
-        }
-
-        window.addEventListener('scroll', checkScroll);
-        window.addEventListener('load', checkScroll);
+        });
     </script>
 </body>
 </html>
